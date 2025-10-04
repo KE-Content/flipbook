@@ -1,59 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Flipbook Demos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      color: #333;
-      padding: 40px;
+    :root{
+      --sidebar-w: 290px;
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --border: #e6e8ee;
+      --link: #0b63c6;
+      --link-hover: #084f9c;
+      --active-bg: #e9f0ff;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display:flex; min-height:100dvh; background:var(--bg); color:#2b2f36;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 600px;
-      margin: 0 auto;
+    /* Sidebar */
+    aside{
+      width:var(--sidebar-w); background:var(--card); border-right:1px solid var(--border);
+      padding:16px 14px; overflow-y:auto;
     }
-    li {
-      background: #fff;
-      margin: 8px 0;
-      padding: 12px 16px;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: background 0.2s;
+    h1{font-size:18px;margin:0 0 10px;text-align:center}
+    nav ul{list-style:none;margin:0;padding:0}
+    nav li{margin:6px 0}
+    nav a{
+      display:block; padding:10px 12px; border-radius:8px;
+      color:var(--link); text-decoration:none; font-weight:600;
+      border:1px solid var(--border); background:#f9fbff;
+      transition:background .15s,border-color .15s,color .15s;
+      outline: none;
     }
-    li:hover {
-      background: #f0f0f0;
+    nav a:hover{background:#f2f7ff; color:var(--link-hover)}
+    nav a.active{
+      background:var(--active-bg);
+      border-color:#c8d9ff;
     }
-    a {
-      text-decoration: none;
-      color: #0073e6;
-      font-weight: bold;
+    nav a:focus{box-shadow:0 0 0 3px #cfe3ff}
+
+    /* Preview pane */
+    .preview{flex:1; min-width:0; display:flex; flex-direction:column}
+    .bar{
+      display:flex; gap:10px; align-items:center; padding:10px 14px;
+      background:var(--card); border-bottom:1px solid var(--border);
+      font-size:14px; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
+    .bar .name{font-weight:600; color:#111}
+    iframe{flex:1; width:100%; border:0; background:#fff}
+
+    /* Mobile: stack + collapsible list */
+    @media (max-width: 860px){
+      body{flex-direction:column}
+      aside{width:100%; border-right:0; border-bottom:1px solid var(--border)}
+    }
+
+    /* Small quality of life */
+    .sr-only{position:absolute;left:-9999px}
+    .spacer{flex:1}
+    button.toggle{
+      display:none;
+      border:1px solid var(--border); background:var(--card);
+      padding:6px 10px; border-radius:6px; font-weight:600; cursor:pointer;
+    }
+    @media (max-width: 860px){ button.toggle{display:inline-block} }
   </style>
 </head>
 <body>
-  <h1>Flipbook Demo Index</h1>
-  <ul>
-    <li><a href="book_shelf.html" target="_blank">Book Shelf</a></li>
-    <li><a href="pdf_flipbook_base64.html" target="_blank">PDF Flipbook (Base64)</a></li>
-    <li><a href="single_page_2d.html" target="_blank">Single Page (2D)</a></li>
-    <li><a href="single_page_3d.html" target="_blank">Single Page (3D)</a></li>
-    <li><a href="single_page_deeplinking.html" target="_blank">Single Page (Deep Linking)</a></li>
-    <li><a href="single_page_swipe.html" target="_blank">Single Page (Swipe)</a></li>
-    <li><a href="skin_dark.html" target="_blank">Skin (Dark)</a></li>
-    <li><a href="skin_gradient.html" target="_blank">Skin (Gradient)</a></li>
-    <li><a href="skin_light.html" target="_blank">Skin (Light)</a></li>
-    <li><a href="view_mode_2d.html" target="_blank">View Mode (2D)</a></li>
-    <li><a href="view_mode_3d.html" target="_blank">View Mode (3D)</a></li>
-    <li><a href="view_mode_scroll.html" target="_blank">View Mode (Scroll)</a></li>
-    <li><a href="view_mode_swipe.html" target="_blank">View Mode (Swipe)</a></li>
-  </ul>
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <h1>Flipbook Demos</h1>
+    <nav aria-label="Demo list">
+      <ul id="demoList">
+        <li><a href="book_shelf.html">Book Shelf</a></li>
+        <li><a href="pdf_flipbook_base64.html">PDF Flipbook (Base64)</a></li>
+        <li><a href="single_page_2d.html">Single Page (2D)</a></li>
+        <li><a href="single_page_3d.html">Single Page (3D)</a></li>
+        <li><a href="single_page_deeplinking.html">Single Page (Deep Linking)</a></li>
+        <li><a href="single_page_swipe.html">Single Page (Swipe)</a></li>
+        <li><a href="skin_dark.html">Skin (Dark)</a></li>
+        <li><a href="skin_gradient.html">Skin (Gradient)</a></li>
+        <li><a href="skin_light.html">Skin (Light)</a></li>
+        <li><a href="view_mode_2d.html">View Mode (2D)</a></li>
+        <li><a href="view_mode_3d.html">View Mode (3D)</a></li>
+        <li><a href="view_mode_scroll.html">View Mode (Scroll)</a></li>
+        <li><a href="view_mode_swipe.html">View Mode (Swipe)</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Preview -->
+  <section class="preview">
+    <div class="bar">
+      <button class="toggle" aria-controls="sidebar" aria-expanded="true">Menu</button>
+      <span>Preview:</span>
+      <span class="name" id="currentName">book_shelf.html</span>
+      <span class="spacer"></span>
+      <span id="hint" aria-hidden="true">Use back/forward to navigate viewed demos</span>
+    </div>
+    <iframe id="previewFrame" src="book_shelf.html" loading="lazy" allowfullscreen></iframe>
+  </section>
+
+  <noscript>
+    <p class="sr-only">Enable JavaScript to use the built-in previewer.</p>
+  </noscript>
+
+  <script>
+    const frame = document.getElementById('previewFrame');
+    const nameEl = document.getElementById('currentName');
+    const links = Array.from(document.querySelectorAll('#demoList a'));
+    const toggleBtn = document.querySelector('button.toggle');
+    const sidebar = document.getElementById('sidebar');
+
+    // Apply active state + aria-current
+    function setActive(href){
+      links.forEach(a => {
+        const isActive = a.getAttribute('href') === href;
+        a.classList.toggle('active', isActive);
+        if (isActive) { a.setAttribute('aria-current', 'page'); }
+        else { a.removeAttribute('aria-current'); }
+      });
+      nameEl.textContent = href;
+      // remember last viewed
+      try { localStorage.setItem('lastDemo', href); } catch(e){}
+    }
+
+    // Load a demo and update URL hash (for deep-link/back-forward)
+    function loadDemo(href, push=true){
+      frame.src = href;
+      setActive(href);
+      const url = new URL(location.href);
+      url.hash = encodeURIComponent(href);
+      if (push) history.pushState({demo: href}, '', url);
+    }
+
+    // Clicks
+    links.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        loadDemo(a.getAttribute('href'));
+        // collapse sidebar on mobile after selection
+        if (window.matchMedia('(max-width: 860px)').matches){
+          sidebar.style.display = 'none';
+          toggleBtn.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+
+    // Keyboard navigation (Up/Down + Enter)
+    let focused = 0;
+    document.addEventListener('keydown', e => {
+      if (['ArrowDown','ArrowUp','Enter'].includes(e.key)){
+        e.preventDefault();
+        const max = links.length - 1;
+        if (e.key === 'ArrowDown') focused = Math.min(max, focused + 1);
+        if (e.key === 'ArrowUp')   focused = Math.max(0,   focused - 1);
+        if (e.key === 'Enter')     loadDemo(links[focused].getAttribute('href'));
+        links[focused].focus();
+      }
+    });
+
+    // Toggle menu on mobile
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = getComputedStyle(sidebar).display === 'none';
+      sidebar.style.display = isHidden ? 'block' : 'none';
+      toggleBtn.setAttribute('aria-expanded', String(isHidden));
+    });
+
+    // Handle direct links: #file.html or ?demo=file.html
+    function initialDemo(){
+      const hash = decodeURIComponent(location.hash.replace('#',''));
+      const params = new URLSearchParams(location.search);
+      const q = params.get('demo');
+      const stored = (() => { try { return localStorage.getItem('lastDemo'); } catch(e){ return null; } })();
+      const candidate = hash || q || stored || links[0].getAttribute('href');
+      return links.some(a => a.getAttribute('href') === candidate) ? candidate : links[0].getAttribute('href');
+    }
+
+    // Back/forward support
+    window.addEventListener('popstate', (e) => {
+      const href = (e.state && e.state.demo) || decodeURIComponent(location.hash.replace('#',''));
+      if (href) {
+        frame.src = href;
+        setActive(href);
+      }
+    });
+
+    // Init
+    const start = initialDemo();
+    // Replace initial state so back button returns to outside page, not a duplicate state
+    history.replaceState({demo:start}, '', '#' + encodeURIComponent(start));
+    frame.src = start;
+    setActive(start);
+  </script>
 </body>
 </html>
