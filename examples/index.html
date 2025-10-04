@@ -1,76 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <link rel="stylesheet" href="../build/css/flipbook.min.css">
-
-        <script
-            src="https://code.jquery.com/jquery-3.6.3.js"
-            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-            crossorigin="anonymous"
-        ></script>
-        <style>
-            #container {
-                position: relative;
-                width: 800px;
-                height: 600px;
-            }
-        </style>
-
-        <script src="../build/js/flipbook.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#container').flipBook({
-                    pages: [
-                        {
-                            src: 'images/catalog/1.jpg',
-                            thumb: 'images/catalog/1.jpg',
-                            title: 'Cover',
-                        },
-                        {
-                            src: 'images/catalog/2.jpg',
-                            thumb: 'images/catalog/thumb2.jpg',
-                            title: 'Content',
-                        },
-                        {
-                            src: 'images/catalog/3.jpg',
-                            thumb: 'images/catalog/thumb3.jpg',
-                            title: 'Welcome',
-                        },
-                        {
-                            src: 'images/catalog/4.jpg',
-                            thumb: 'images/catalog/thumb4.jpg',
-                            title: 'Design with attitude',
-                        },
-                        {
-                            src: 'images/catalog/5.jpg',
-                            thumb: 'images/catalog/thumb5.jpg',
-                        },
-                        {
-                            src: 'images/catalog/6.jpg',
-                            thumb: 'images/catalog/thumb6.jpg',
-                            title: 'New Arrivals',
-                        },
-                        {
-                            src: 'images/catalog/7.jpg',
-                            thumb: 'images/catalog/thumb7.jpg',
-                        },
-                        {
-                            src: 'images/catalog/8.jpg',
-                            thumb: 'images/catalog/thumb8.jpg',
-                            title: 'Get our newsletter',
-                        },
-                    ],
-                    viewMode: '2d',
-                    skin: 'dark',
-                });
-            });
-        </script>
-    </head>
-
-    <body>
-        <h3>Dark skin</h3>
-        <div id="container"></div>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flipbook Demo Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      text-align: center;
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.6rem 0;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flipbook Demo Gallery</h1>
+  <p>Select a demo to preview:</p>
+  <ul>
+    <li><a href="example1.html">Example 1</a></li>
+    <li><a href="example2.html">Example 2</a></li>
+    <li><a href="example3.html">Example 3</a></li>
+    <li><a href="example4.html">Example 4</a></li>
+    <li><a href="pdf.html">PDF Example</a></li>
+    <li><a href="lightbox.html">Lightbox Example</a></li>
+    <li><a href="fullscreen.html">Fullscreen Example</a></li>
+    <li><a href="responsive.html">Responsive Example</a></li>
+    <li><a href="old-index.html">Original Demo (Old Index)</a></li>
+  </ul>
+</body>
 </html>
